@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+   id="org.eclipse.cdt.interfacegenerator.test"
+   name="Test"
+   version="1.0.0">
+
+</plugin>

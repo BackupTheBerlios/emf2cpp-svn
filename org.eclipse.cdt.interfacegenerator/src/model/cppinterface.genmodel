@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.cdt.interfacegenerator/src"
+    editDirectory="/org.eclipse.cdt.interfacegenerator.edit/src" editorDirectory="/org.eclipse.cdt.interfacegenerator.editor/src"
+    modelPluginID="org.eclipse.cdt.interfacegenerator" runtimeJar="true" modelName="Cppinterface"
+    editPluginClass="interfacegenerator.provider.CppinterfaceEditPlugin" editorPluginClass="interfacegenerator.presentation.CppinterfaceEditorPlugin"
+    runtimeCompatibility="false">
+  <foreignModel>interfacegenerator.mdl</foreignModel>
+  <genPackages prefix="Interfacegenerator" basePackage="org.eclipse.cdt.interfacegenerator"
+      ecorePackage="interfacegenerator.ecore#/">
+    <genEnums ecoreEnum="interfacegenerator.ecore#//TemplateParameterType">
+      <genEnumLiterals ecoreEnumLiteral="interfacegenerator.ecore#//TemplateParameterType/class"/>
+      <genEnumLiterals ecoreEnumLiteral="interfacegenerator.ecore#//TemplateParameterType/typename"/>
+    </genEnums>
+    <genEnums ecoreEnum="interfacegenerator.ecore#//ReferenceType">
+      <genEnumLiterals ecoreEnumLiteral="interfacegenerator.ecore#//ReferenceType/none"/>
+      <genEnumLiterals ecoreEnumLiteral="interfacegenerator.ecore#//ReferenceType/reference"/>
+      <genEnumLiterals ecoreEnumLiteral="interfacegenerator.ecore#//ReferenceType/pointer"/>
+    </genEnums>
+    <genEnums ecoreEnum="interfacegenerator.ecore#//PrimitiveTypes">
+      <genEnumLiterals ecoreEnumLiteral="interfacegenerator.ecore#//PrimitiveTypes/int"/>
+      <genEnumLiterals ecoreEnumLiteral="interfacegenerator.ecore#//PrimitiveTypes/float"/>
+      <genEnumLiterals ecoreEnumLiteral="interfacegenerator.ecore#//PrimitiveTypes/long"/>
+      <genEnumLiterals ecoreEnumLiteral="interfacegenerator.ecore#//PrimitiveTypes/double"/>
+      <genEnumLiterals ecoreEnumLiteral="interfacegenerator.ecore#//PrimitiveTypes/char"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="interfacegenerator.ecore#//JavaList"/>
+    <genClasses ecoreClass="interfacegenerator.ecore#//Interface">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute interfacegenerator.ecore#//Interface/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference interfacegenerator.ecore#//Interface/operations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference interfacegenerator.ecore#//Interface/derivedFrom"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference interfacegenerator.ecore#//Interface/assignedComponents"/>
+    </genClasses>
+    <genClasses ecoreClass="interfacegenerator.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute interfacegenerator.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="interfacegenerator.ecore#//AbstractCppDataType">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference interfacegenerator.ecore#//AbstractCppDataType/package"/>
+      <genOperations ecoreOperation="interfacegenerator.ecore#//AbstractCppDataType/isPrimitive"/>
+      <genOperations ecoreOperation="interfacegenerator.ecore#//AbstractCppDataType/getHeader"/>
+      <genOperations ecoreOperation="interfacegenerator.ecore#//AbstractCppDataType/getTypeName"/>
+      <genOperations ecoreOperation="interfacegenerator.ecore#//AbstractCppDataType/getNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="interfacegenerator.ecore#//TemplateInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference interfacegenerator.ecore#//TemplateInterface/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="interfacegenerator.ecore#//TemplateParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute interfacegenerator.ecore#//TemplateParameter/type"/>
+    </genClasses>
+    <genClasses ecoreClass="interfacegenerator.ecore#//ConstElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute interfacegenerator.ecore#//ConstElement/const"/>
+    </genClasses>
+    <genClasses ecoreClass="interfacegenerator.ecore#//Operation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference interfacegenerator.ecore#//Operation/returnType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference interfacegenerator.ecore#//Operation/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="interfacegenerator.ecore#//Derivation">
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference interfacegenerator.ecore#//Derivation/baseType"/>
+    </genClasses>
+    <genClasses ecoreClass="interfacegenerator.ecore#//TypeElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute interfacegenerator.ecore#//TypeElement/referenceType"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference interfacegenerator.ecore#//TypeElement/type"/>
+    </genClasses>
+    <genClasses ecoreClass="interfacegenerator.ecore#//Parameter"/>
+    <genClasses ecoreClass="interfacegenerator.ecore#//PrimitiveCppType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute interfacegenerator.ecore#//PrimitiveCppType/type"/>
+      <genOperations ecoreOperation="interfacegenerator.ecore#//PrimitiveCppType/getTypeName"/>
+      <genOperations ecoreOperation="interfacegenerator.ecore#//PrimitiveCppType/isPrimitive"/>
+      <genOperations ecoreOperation="interfacegenerator.ecore#//PrimitiveCppType/getHeader"/>
+    </genClasses>
+    <genClasses ecoreClass="interfacegenerator.ecore#//ReturnType"/>
+    <genClasses ecoreClass="interfacegenerator.ecore#//Package">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute interfacegenerator.ecore#//Package/isNamespace"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference interfacegenerator.ecore#//Package/dataTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference interfacegenerator.ecore#//Package/packages"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference interfacegenerator.ecore#//Package/parent"/>
+      <genFeatures notify="false" children="true" createChild="true" ecoreFeature="ecore:EReference interfacegenerator.ecore#//Package/components"/>
+    </genClasses>
+    <genClasses ecoreClass="interfacegenerator.ecore#//Component">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute interfacegenerator.ecore#//Component/isOnSearchPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute interfacegenerator.ecore#//Component/extension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute interfacegenerator.ecore#//Component/isCreateCode"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference interfacegenerator.ecore#//Component/assignedInterfaces"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

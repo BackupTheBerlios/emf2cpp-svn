@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+-->
+
+<plugin
+    name = "%pluginName"
+    id = "org.eclipse.cdt.interfacegenerator.edit"
+    version = "1.0.0"
+    provider-name = "%providerName"
+    class = "interfacegenerator.provider.CppinterfaceEditPlugin$Implementation">
+
+  <requires>
+    <import plugin="org.eclipse.core.runtime" />
+    <import plugin="org.eclipse.cdt.interfacegenerator" export="true"/>
+    <import plugin="org.eclipse.emf.edit" export="true"/>
+  </requires>
+
+  <runtime>
+    <library name="runtime/org.eclipse.cdt.interfacegenerator.edit.jar">
+      <export name="*"/>
+    </library>
+  </runtime>
+
+</plugin>
+

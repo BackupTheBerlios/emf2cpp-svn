@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="org.eclipse.cdt.interfacegenerator.generate"
+   name="Generate Plug-in"
+   version="1.0.0"
+   provider-name=""
+   class="org.eclipse.cdt.interfacegenerator.generate.GeneratePlugin">
+
+   <runtime>
+      <library name="generate.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.cdt.interfacegenerator"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.cdt"/>
+      <import plugin="org.eclipse.cdt.core"/>
+   </requires>
+   <extension
+         id="InterfaceGeneratorNature"
+         name="Interface generator nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run class="org.eclipse.cdt.interfacegenerator.generate.InterfaceGeneratorNature"/>
+      </runtime>
+      <requires-nature id="org.eclipse.cdt.core.ccnature"/>
+      <builder id="org.eclipse.cdt.interfacegenerator.generate.Builder"/>
+   </extension>
+   <extension
+         id="Builder"
+         name="Interface generator builder"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run class="org.eclipse.cdt.interfacegenerator.generate.InterfaceGeneratorBuilder"/>
+      </builder>
+   </extension>
+
+</plugin>

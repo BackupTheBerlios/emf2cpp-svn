@@ -1,0 +1,43 @@
+<%@ jet package="org.eclipse.cdt.interfacegenerator.generate.template" class="InterfaceTemplate" imports="java.util.* org.eclipse.cdt.interfacegenerator.interfacegenerator.* org.eclipse.cdt.interfacegenerator.generate.*"%>
+<%Interface theInterface=(Interface) argument;%>
+<%List baseClasses=Helper.getBaseClasses(theInterface);%>
+<%List namespace=Helper.getNamespace(theInterface);%>
+<%for (int i=0;i < namespace.size();i++){%><%for (int j=0;j < i;j++){%>   <%}%>namespace <%=namespace.get(i)%>{<%=NL%><%}%>
+class <%=theInterface.getName()%> : <%for (Iterator baseClassIter=baseClasses.iterator();baseClassIter.hasNext();){%>public <%=baseClassIter.next()%><%if (baseClassIter.hasNext()){%>, <%}}%>{
+   public:
+      template <class T> struct <%=theInterface.getName()%>_functions;
+      template <class T> <%=theInterface.getName()%>(T& x): <%for (Iterator baseClassIter=baseClasses.iterator();baseClassIter.hasNext();){%><%=baseClassIter.next()%>(x)<%if (baseClassIter.hasNext()){%>, <%}}%>,
+         myT(<%=theInterface.getName()%>_functions<T>::table()){};
+<%for(Iterator opIter=theInterface.getOperations().iterator();opIter.hasNext();){Operation op=(Operation) opIter.next();%>
+      
+      <%ReturnType returnType=op.getReturnType();if (returnType != null){%><%=Helper.getTypeString(returnType)%><%}else{%>void<%}%> <%=op.getName()%>(<%for(Iterator paramIter=op.getParameters().iterator();paramIter.hasNext();){Parameter param=(Parameter) paramIter.next();%><%=Helper.getParameterString(param)%><%if (paramIter.hasNext()){%>, <%}%><%}%>)<%if (op.isConst()){%> const<%}%>
+      {
+         
+         <%if (returnType != null){%>return <%}%>myT.<%=op.getName()%>(const_cast<void*>(myA)<%for(Iterator paramIter=op.getParameters().iterator();paramIter.hasNext();){Parameter param=(Parameter) paramIter.next();%>, <%=param.getName()%><%}%>);
+      };
+<%}%>
+
+      struct <%=theInterface.getName()%>_functionTableType
+      {
+<%for(Iterator opIter=theInterface.getOperations().iterator();opIter.hasNext();){Operation op=(Operation) opIter.next();%>
+         
+      <%ReturnType returnType=op.getReturnType();if (returnType != null){%><%=Helper.getTypeString(returnType)%><%}else{%>void<%}%> (*<%=op.getName()%>) (void *<%for(Iterator paramIter=op.getParameters().iterator();paramIter.hasNext();){Parameter param=(Parameter) paramIter.next();%>, <%=Helper.getParameterString(param)%><%}%>);
+<%}%>
+      };
+      template <class T> struct <%=theInterface.getName()%>_functions
+      {
+         static struct <%=theInterface.getName()%>::<%=theInterface.getName()%>_functionTableType &table()
+         {
+            static struct <%=theInterface.getName()%>::<%=theInterface.getName()%>_functionTableType table=
+            {
+<%for(Iterator opIter=theInterface.getOperations().iterator();opIter.hasNext();){Operation op=(Operation) opIter.next();%>
+               &<%=theInterface.getName()%>::<%=theInterface.getName()%>_functions<T>::<%=op.getName()%><%if (opIter.hasNext()){%>,<%}%>
+<%}%>
+            };
+            return table;
+         }
+      };
+   private:
+      <%=theInterface.getName()%>_functionTableType const& myT;
+};
+<%for (int i=namespace.size() - 1;i >= 0;i--){%><%=NL%><%for (int j=0;j < i;j++){%>   <%}%>} // <%=namespace.get(i)%><%}%>

@@ -1,0 +1,8 @@
+<%@ jet package="org.eclipse.cdt.interfacegenerator.generate.template" class="HeaderFileTemplate" imports="java.util.* org.eclipse.cdt.interfacegenerator.interfacegenerator.* org.eclipse.cdt.interfacegenerator.generate.*"%>
+<%Component component=(Component) argument;%>
+<%String includeProtection=component.getName().toUpperCase() + "_H";%>
+#ifndef <%=includeProtection%>
+#define <%=includeProtection%> 1
+
+<%for(Iterator interfaceIter=component.getAssignedInterfaces().iterator();interfaceIter.hasNext();){InterfaceTemplate template=new InterfaceTemplate();%><%=NL%><%=template.generate(interfaceIter.next())%><%}%>
+#endif // <%=includeProtection%>

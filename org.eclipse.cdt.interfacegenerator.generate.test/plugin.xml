@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+   id="org.eclipse.cdt.interfacegenerator.generate.test"
+   name="Test"
+   version="1.0.0">
+   <runtime>
+      <library name="mmmockobjects.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+   <requires>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.junit"/>
+      <import plugin="org.eclipse.cdt.interfacegenerator"/>
+      <import plugin="org.eclipse.cdt.interfacegenerator.generate"/>
+      <import plugin="org.eclipse.cdt.interfacegenerator.test"/>
+      <import plugin="org.eclipse.ui"/>
+   </requires>
+
+</plugin>
